@@ -1,11 +1,15 @@
 public class ListVisualiser {
     SLList l;
+    SLList tortoise;
+    SLList hare;
 
     public static final SLList NIL = new SLList(0, null);
 
     public ListVisualiser(SLList l) {
 
         this.l = l;
+        SLList tortoise = l.rest();
+        SLList hare = tortoise.rest();
 
     }
     //check List
@@ -17,6 +21,13 @@ public class ListVisualiser {
     public void visualise() {
         //retrun ListVisualiser
         //apply Hare and Tortoise Algorithm
+        System.out.print("found");
+
+        handt(l);
+        // System.out.print("line28");
+
+        //startLoop(l);
+
         if(handt(l) == false){
             //System.out.println("##############################");
             //int counter = l.counter();
@@ -46,6 +57,30 @@ public class ListVisualiser {
         }
         else{
             //do dis init
+            //endLoop(l);
+            int counter = 10;
+            int x = 0;
+            //head = l.first()
+            while(x != counter){
+                if(x != counter-1){
+                    System.out.print(node(x));
+                }else{
+                    System.out.print(end());
+                }
+                x++;
+            }
+            System.out.println();
+            x = 0;
+            while(x != counter ){
+                System.out.print(piplines());
+                x++;
+            }
+            System.out.println();
+            x = 0;
+            while(x != counter ){
+                System.out.print(next(l, x));
+                x++;
+            }
         }
     }
 
@@ -86,8 +121,8 @@ public class ListVisualiser {
 
     public boolean handt(SLList lst){
 
-        SLList tortoise = lst.rest();
-        SLList hare = tortoise.rest();
+        tortoise = lst.rest();
+        hare = tortoise.rest();
 
         while(hare != NIL){
             if(hare == tortoise){
@@ -104,5 +139,30 @@ public class ListVisualiser {
         return false;
     }
 
+    public SLList startLoop(SLList lst){
+        SLList head = lst.rest();
+        while(tortoise != head){
+            tortoise = tortoise.rest();
+            if(hare.rest().rest() != null){
+                hare = hare.rest().rest();
+            }else{
+                break;
+            }
+            head = head.rest();
+        }
+        return tortoise;
+    }
+
+    // public SLList endLoop(SLList lst){
+    //
+    //     SLList hare = lst.rest();
+    //
+    //     while(tortoise.rest() != hare){
+    //
+    //         tortoise = tortoise.rest();
+    //         hare = hare.rest();
+    //     }
+    //     tortoise.rest() = null;
+    // }
 
 }
