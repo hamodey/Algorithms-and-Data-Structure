@@ -1,10 +1,16 @@
 include ../../cpp.mk
 
-StringMatchTest: StringMatchTest.o StringMatch.o NaiveStringMatch.o RKStringMatch.o KMPStringMatch.o ../../00/cpp/OpCounter.o
+NaiveStringMatchTest: NaiveStringMatchTest.o StringMatchTest.o StringMatch.o NaiveStringMatch.o ../../00/cpp/OpCounter.o ../../00/cpp/RunTests.o
 	$(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) $(TARGET_ARCH) $^ $(LOADLIBES) $(LDLIBS) -o $@
 
-test: StringMatchTest
-	./StringMatchTest NaiveStringMatch
+RKStringMatchTest: RKStringMatchTest.o StringMatchTest.o StringMatch.o RKStringMatch.o  ../../00/cpp/OpCounter.o ../../00/cpp/RunTests.o
+	$(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) $(TARGET_ARCH) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+KMPStringMatchTest: KMPStringMatchTest.o StringMatchTest.o StringMatch.o KMPStringMatch.o ../../00/cpp/OpCounter.o ../../00/cpp/RunTests.o
+	$(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) $(TARGET_ARCH) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+test: NaiveStringMatchTest
+	./NaiveStringMatchTest
 
 StringMatchCount: StringMatchCount.o StringMatch.o NaiveStringMatch.o RKStringMatch.o KMPStringMatch.o ../../00/cpp/OpCounter.o
 	$(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) $(TARGET_ARCH) $^ $(LOADLIBES) $(LDLIBS) -o $@

@@ -6,9 +6,9 @@
 #include "KMPStringMatch.hpp"
 
 int main() {
-  std::string P = "ab";
-  std::string T = "aaaaaaaaaa";
-  StringMatch *matcher = new NaiveStringMatch();
+  std::string P = "aaaab";
+  std::string T = "";
+  StringMatch *matcher = new KMPStringMatch();
 
   matcher->match(T, P);
   std::cout << "char reads: " << matcher->counter.report() << std::endl;;
