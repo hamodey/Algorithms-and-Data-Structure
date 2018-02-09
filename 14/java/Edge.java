@@ -7,4 +7,8 @@ public class Edge {
         this.to = _to;
         this.weight = _weight;
     }
+
+    public int getWeight(){
+        return weight;
+    }
 }
