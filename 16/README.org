@@ -1,0 +1,58 @@
+#+TITLE: Algorithms & Data Structures: Lab 16
+#+SUBTITLE: week of 19th February 2018
+
+#+include: ../labsheet.org
+
+* Setup
+** Saving your work from last week
+   By now you should be familiar with the operations needed to save
+   your work.  Make sure you commit your work to version control
+   often, and always have a backup copy, ideally remotely (for example
+   in your own account on the department's gitlab installation.)
+** Downloading this week's distribution
+   Once you have successfully saved your changes from last week, you
+   can get my updates by doing
+#+begin_example
+  git pull
+#+end_example
+   which /should/ automatically merge in new content.  After the =git
+   pull= command, you should have a new directory containing this
+   week's material (named =16/=) alongside your existing directories.
+* Linear Congruential generator
+  Implement a Linear congruential pseudorandom number generator,
+  supporting the operations (=next!= and =seed!=) described in the
+  lecture.  You are provided with skeleton files and test files, as
+  usual; running =make test= in the =cpp/= or =java/= directory should
+  provide you with a test failure report, and once you have
+  successfully implemented such a generator, you should be able to
+  rerun the tests I provide with success.
+
+  One of the issues described in the lecture relates to the low bits
+  of an pseudorandom sequence from an LCG having very little entropy
+  (/e.g./ the lowest bit of the numbers alternating between 0 and 1).
+  How might random number generators deal with this problem in
+  practice?
+* Xorshift generator
+  Implement a xorshift random number generator; specifically, the
+  general version (with arbitrary shifts a, b and c) of =unsigned long
+  xor= given on page 4 of George Marsaglia's “Xorshift RNGs”,
+  published by the Journal of Statistical Software in July 2003.
+
+  Your implementation should maintain the one unsigned 32-bit word of
+  state, and update and return it according to:
+#+BEGIN_EXPORT LaTeX
+\begin{algorithmic}
+\State{x ← x ⊕ \Call{leftshift}{x,a}}
+\State{x ← x ⊕ \Call{rightshift}{x,b}}
+\State{x ← x ⊕ \Call{leftshift}{x,c}}
+\State \Return x
+\end{algorithmic}
+#+END_EXPORT
+
+  A skeleton implementation and a single basic test is provided; you
+  might wish to consider writing your own tests for this.
+* Pseudorandom numbers submission
+  Submit your work on pseudorandom number generators, along with
+  answers to the optional extra questions, to the submission area for
+  this lab on the VLE by *18:00* on *Friday 23rd February*.  As usual,
+  you may submit more than once, and your highest score is retained.
