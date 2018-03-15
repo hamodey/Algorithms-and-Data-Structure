@@ -39,5 +39,7 @@ public class Trie {
 
         return this.children[idx].query(s.substring(1));
     }
-
+    public String getString(){
+        return s;
+    }
 }

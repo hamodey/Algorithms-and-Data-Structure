@@ -1,21 +1,20 @@
 import java.util.Map;
-import java.util.HashMap;
+import java.util.TreeMap;
 
 public class CompressedTrie {
     public Map<String, CompressedTrie> children;
     public CompressedTrie() {
-        children = new HashMap<String, CompressedTrie>();
+        children = new TreeMap<String, CompressedTrie>();
     }
     public static CompressedTrie compressTrie(Trie t) {
         //have the value of String trie and add to children
         CompressedTrie c = new CompressedTrie();
-        int len = t.children.length;
+        char[] set = new char[27];
+        c.children.put(t.s + '{', c);
 
-        for(int i = 0 ; i < len; i ++){
-            // System.out.println(t.s);
-            c.children.put(t.s + '{', c);
+        System.out.println();
+        System.out.println(c.children.toString());
 
-        }
         return c;
     }
     public boolean query(String s) {
